@@ -42,7 +42,9 @@ public class GameController : MonoBehaviour
         InstantiateEnemies();
 
         //reset player position
-        player.transform.position = new Vector3(0, 0, 0);
+        player.GetComponent<CharacterController>().enabled = false;
+        player.transform.position = new Vector3(0, 0, -16);
+        player.GetComponent<CharacterController>().enabled = true;
 
         //hide win and loss screens
         loseScreen.SetActive(false);
@@ -85,6 +87,7 @@ public class GameController : MonoBehaviour
         winScreen.SetActive(true);
         if (Input.GetKeyDown(KeyCode.R))
         {
+            removeChampionText();
             ResetGame();
         }
     }
